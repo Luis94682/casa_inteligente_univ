@@ -1,7 +1,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
       <div class="container d-flex justify-content-between">
-        <a class="navbar-brand" href="#" data-aos="flip-left">
+        <a class="navbar-brand" href="{{route('index')}}" data-aos="flip-left">
           <i class="fa-solid fa-bolt"></i> Smart Home
         </a>
         <button
@@ -32,7 +32,7 @@
             </li>
           </ul>
           <div class="ms-3 d-flex gap-2 btn-entrar">
-            <a href="index.html" class="btn btn-accent btn-sm">Começar agora</a>
+            <a href="{{route('login')}}" class="btn btn-accent btn-sm">Começar agora</a>
           </div>
         </div>
       </div>
@@ -57,7 +57,7 @@
         </p>
 
         <div class="d-flex justify-content-center gap-3 flex-wrap mt-5">
-          <a href="#" class="btn btn-accent btn-lg px-5">Começar agora →</a>
+          <a href="{{route('login')}}" class="btn btn-accent btn-lg px-5">Começar agora →</a>
           <a href="#" class="btn btn-outline-light btn-lg px-5">
             <i class="fa-solid fa-play me-2"></i> Saiba mais
           </a>

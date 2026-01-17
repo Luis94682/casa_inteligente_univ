@@ -99,15 +99,15 @@ body {
  
 }
 .input-group,input,.input-group-text{
-       border-radius: 16px !important;
-     border: none !important;
+    border-radius: 16px !important;
+    border: none !important;
 
 }
 
 input{
     background-color: #10192d !important;
     height: 45px;
-     color: rgb(255, 255, 255) !important;
+    color: rgb(255, 255, 255) !important;
 }
 
 .input-group:focus-within{
