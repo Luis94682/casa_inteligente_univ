@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -16,7 +18,7 @@ class AuthController extends Controller
     }
 
 
-    public function validacao(Request $request){
+    /* public function validacao(Request $request){
 
         $request->validate([
             'senha_camp'=>'required',
@@ -27,7 +29,21 @@ class AuthController extends Controller
         $email=$request->input('email_camp');
 
         echo "ok";
-    }
+    } */
+
+        public function store(Request $request){
+            $user = User::create([
+                'name' => $request->name ?? explode('@', $request->email)[0],
+                'email' => $request->email,
+                'telefone' => $request->telefone,
+                'password' => Hash::make($request->password),
+            ]);
+
+            // ... após User::create(...)
+
+return redirect()->route('login')
+    ->with('success', 'Conta criada com sucesso! Agora podes fazer login.');
+        }
 
    
 }
