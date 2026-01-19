@@ -40,14 +40,9 @@
                         <label class="form-label text-start d-block">Email</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                            <input type="email" 
-                                   name="email" 
-                                   class="form-control @error('email') is-invalid @enderror" 
-                                   placeholder="seu@email.com"
-                                   value="{{ old('email') }}"
-                                   required
-                                   autocomplete="email"
-                                   autofocus>
+                            <input type="email" name="email"
+                                class="form-control @error('email') is-invalid @enderror" placeholder="seu@email.com"
+                                value="{{ old('email') }}" required autocomplete="email" autofocus>
                             @error('email')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -59,11 +54,9 @@
                         <label class="form-label text-start d-block">Telefone</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-phone"></i></span>
-                            <input type="tel" 
-                                   name="telefone" 
-                                   class="form-control @error('telefone') is-invalid @enderror" 
-                                   placeholder="(+244) 000 000 000"
-                                   value="{{ old('telefone') }}">
+                            <input type="tel" name="telefone"
+                                class="form-control @error('telefone') is-invalid @enderror"
+                                placeholder="(+244) 000 000 000" value="{{ old('telefone') }}">
                             @error('telefone')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -75,29 +68,32 @@
                         <label class="form-label text-start d-block">Senha</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                            <input type="password" 
-                                   name="name" 
-                                   class="form-control @error('password') is-invalid @enderror" 
-                                   placeholder="********"
-                                   required
-                                   autocomplete="new-password">
+                            <input type="password" name="password"
+                                class="form-control @error('password') is-invalid @enderror" placeholder="********"
+                                required autocomplete="new-password">
                             @error('password')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                     </div>
 
-                    <!-- Confirmar Senha -->
+
+
+                    <div class="col-md-6">
+                        <label class="form-label text-start d-block">Confirmar Senha</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                            <input type="password" name="password_confirmation" class="form-control"
+                                placeholder="********" required autocomplete="new-password">
+                        </div>
+                    </div>
+
+                    <!-- nome completo-->
                     <div class="col-md-6">
                         <label class="form-label text-start d-block">Nome</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                            <input type="text" 
-                                   name="name" 
-                                   class="form-control" 
-                                   placeholder="pedro"
-                                   required
-                                  >
+                            <input type="text" name="name" class="form-control" placeholder="pedro" required>
                         </div>
                     </div>
 
@@ -117,42 +113,50 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- SweetAlert2 CDN -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<!-- Script para mostrar alerts baseados em session -->
-<script>
-    @if (session('success'))
-        Swal.fire({
-            title: 'Sucesso!',
-            text: '{{ session('success') }}',
-            icon: 'success',
-            confirmButtonText: 'OK',
-            timer: 4000,
-            timerProgressBar: true
+    <!-- Script para mostrar o SweetAlert baseado na session flash -->
+
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            @if (session('success'))
+                Swal.fire({
+                    title: 'Sucesso!',
+                    text: '{{ session('success') }}',
+                    icon: 'success',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK',
+                    timer: 5000, // fecha sozinho após 5 segundos
+                    timerProgressBar: true,
+                    showConfirmButton: false // opcional: sem botão se quiser só timer
+                });
+            @endif
+
+            @if (session('error'))
+                Swal.fire({
+                    title: 'Erro!',
+                    text: '{{ session('error') }}',
+                    icon: 'error',
+                    confirmButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                });
+            @endif
+
+            @if ($errors->any())
+                Swal.fire({
+                    title: 'Atenção!',
+                    html: '{{ implode('<br>', $errors->all()) }}',
+                    icon: 'warning',
+                    confirmButtonColor: '#f39c12',
+                    confirmButtonText: 'Corrigir'
+                });
+            @endif
         });
-    @endif
+    </script>
 
-    @if (session('error'))
-        Swal.fire({
-            title: 'Erro!',
-            text: '{{ session('error') }}',
-            icon: 'error',
-            confirmButtonText: 'OK'
-        });
-    @endif
+   
 
-    @if ($errors->any())
-        Swal.fire({
-            title: 'Atenção!',
-            html: '{{ implode('<br>', $errors->all()) }}',
-            icon: 'warning',
-            confirmButtonText: 'Corrigir'
-        });
-    @endif
-</script>
-
-@include('sweetalert::alert')
 </body>
+
 </html>

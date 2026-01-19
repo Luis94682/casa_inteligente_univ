@@ -25,34 +25,46 @@
         </div>
         <h4 class="title">Smart Home</h4>
         <p class="subtitle">Entre na sua conta</p>
-        <form action="/logindata" method="post">
-            @csrf
-            <!-- Email -->
-            <div class="mb-3 text-start">
-                <label class="form-label">Email</label>
-                <div class="input-group">
-                    <span class="input-group-text">
-                        <i class="bi bi-envelope"></i>
-                    </span>
-                    <input type="email" style="background-color:#10192d" name="email_camp" class="form-control" placeholder="seu@email.com">
-                </div>
-            </div>
-            <!-- Senha -->
-            <div class="mb-4 text-start">
-                <label class="form-label">Senha</label>
-                <div class="input-group">
-                    <span class="input-group-text">
-                        <i class="bi bi-lock"></i>
-                    </span>
-                    <input type="password" name="senha_camp" class="form-control" placeholder="********">
-                </div>
-            </div>
+       <form action="{{ route('login.authenticate') }}" method="POST">
+    @csrf
 
-            <!-- Botão -->
-            <button type="submit" class="btn btn-login w-100">
-                Entrar <i class="bi bi-arrow-right"></i>
-            </button>
-        </form>
+    <!-- Email -->
+    <div class="mb-3 text-start">
+        <label class="form-label">Email</label>
+        <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+            <input type="email" 
+                   name="email_camp" 
+                   class="form-control @error('email_camp') is-invalid @enderror" 
+                   placeholder="seu@email.com"
+                   value="{{ old('email_camp') }}"
+                   required autofocus>
+            @error('email_camp')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+    </div>
+
+    <!-- Senha -->
+    <div class="mb-4 text-start">
+        <label class="form-label">Senha</label>
+        <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-lock"></i></span>
+            <input type="password" 
+                   name="senha_camp" 
+                   class="form-control @error('senha_camp') is-invalid @enderror" 
+                   placeholder="********"
+                   required>
+            @error('senha_camp')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-login w-100">
+        Entrar <i class="bi bi-arrow-right"></i>
+    </button>
+</form>
 
         <p class="register mt-4">
             Não tem conta? <a href="{{route('register')}}">Criar conta</a>
@@ -60,5 +72,45 @@
     </div>
 </div>
 
+
+
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            @if (session('success'))
+                Swal.fire({
+                    title: 'Sucesso!',
+                    text: '{{ session('success') }}',
+                    icon: 'success',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK',
+                    timer: 3000, // fecha sozinho após 5 segundos
+                    timerProgressBar: true,
+                    showConfirmButton: false // opcional: sem botão se quiser só timer
+                });
+            @endif
+
+            @if (session('error'))
+                Swal.fire({
+                    title: 'Erro!',
+                    text: '{{ session('error') }}',
+                    icon: 'error',
+                    confirmButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                });
+            @endif
+
+            @if ($errors->any())
+                Swal.fire({
+                    title: 'Atenção!',
+                    html: '{{ implode('<br>', $errors->all()) }}',
+                    icon: 'warning',
+                    confirmButtonColor: '#f39c12',
+                    confirmButtonText: 'Corrigir'
+                });
+            @endif
+        });
+    </script>
 </body>
 </html>
