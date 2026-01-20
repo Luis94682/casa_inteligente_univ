@@ -1,0 +1,56 @@
+
+        .card-stat {
+            background: linear-gradient(145deg, #1a1f3d, #0f162b);
+            border: 1px solid rgba(0, 200, 83, 0.15);
+            border-radius: 16px;
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+        .card-stat:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 200, 83, 0.12);
+        }
+        .badge-small {
+            font-size: 0.75rem;
+            padding: 0.4em 0.8em;
+        }
+        .text-green { color: #00c853; }
+        .text-red   { color: #dc3545; }
+        .text-orange { color: #fd7e14; }
+        .gauge-container {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin: 0 auto;
+        }
+        .gauge-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ffffff;
+        }
+        .chart-container {
+            position: relative;
+            height: 280px;
+            width: 100%;
+        }
+
+
+
+
+     
+                    .alert-info {
+                        color: #e0e0ff !important;
+                    }
+
+                    .btn-close-white {
+                        filter: invert(1) grayscale(100%) brightness(200%);
+                    }
+
+                    .alert-info:hover {
+                        background: linear-gradient(90deg, #1a1f3d 0%, #0f162b 100%) !important;
+                    }
+           
+  

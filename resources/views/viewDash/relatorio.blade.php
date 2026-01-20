@@ -18,7 +18,7 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-              <h1>recomendacoes</h1>
+                <p>relatorio</p>
                 <!-- /.container-fluid -->
 
             </div>

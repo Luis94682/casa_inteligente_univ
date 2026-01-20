@@ -20,7 +20,7 @@
     <!-- Custom styles for this template-->
     <link href="{{asset('assetsAdmin/css/sb-admin-2.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    <link rel="stylesheet" href="{{asset('assetsAdmin/css/grafico.css')}}">
 
     
 </head>
@@ -30,6 +30,7 @@
     @yield('content')
 
     <!-- Bootstrap core JavaScript-->
+
     <script src="{{asset('assetsAdmin/vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('assetsAdmin/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
@@ -44,6 +45,10 @@
     <!-- Page level custom scripts -->
     <script src="{{asset('assetsAdmin/js/demo/chart-area-demo.js')}}"></script>
     <script src="{{asset('assetsAdmin/js/demo/chart-pie-demo.js')}}"></script>
+    <script src="{{asset('assetsAdmin/js/grafico.js')}}"></script>
+
+    <script src="{{asset('assetsAdmin/js/demo/ajax.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

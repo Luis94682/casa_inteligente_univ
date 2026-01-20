@@ -1,34 +1,27 @@
    <ul style="background-color: #090f1b !important;" class="navbar-nav  sidebar sidebar-dark accordion"
-            id="accordionSidebar">
+       id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('dashboard') }}">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">smartHome</div>
-            </a>
+       <!-- Sidebar - Brand -->
+       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard') }}">
+           <div class="sidebar-brand-icon rotate-n-15">
+               <i class="fas fa-laugh-wink"></i>
+           </div>
+           <div class="sidebar-brand-text mx-3">smartHome</div>
+       </a>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+       <!-- Divider -->
+       <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="{{route('dashboard') }}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
+       <!-- Nav Item - Dashboard -->
+       <li class="nav-item active">
+           <a class="nav-link" href="{{ route('dashboard') }}">
+               <i class="fas fa-fw fa-tachometer-alt"></i>
+               <span>Dashboard</span></a>
+       </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Interface
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+       <!-- Nav Item - Pages Collapse Menu -->
+       {{--  <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
@@ -41,20 +34,20 @@
                         <a class="collapse-item" href="cards.html">Cards</a>
                     </div>
                 </div>
-            </li>
+            </li> --}}
 
-            <!-- Nav Item - Utilities Collapse Menu -->
-           
-            <!-- Divider -->
-            <hr class="sidebar-divider">
+       <!-- Nav Item - Utilities Collapse Menu -->
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                menu
-            </div>
+       <!-- Divider -->
+       <hr class="sidebar-divider">
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+       <!-- Heading -->
+       <div class="sidebar-heading">
+           menu
+       </div>
+
+       <!-- Nav Item - Pages Collapse Menu -->
+       {{-- <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
@@ -72,46 +65,60 @@
                         <a class="collapse-item" href="blank.html">Blank Page</a>
                     </div>
                 </div>
-            </li>
+            </li> --}}
 
-            <!-- Nav Item - Charts -->
+       <!-- Nav Item - Charts -->
 
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('dispositivo') }}">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>dispositivos</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('alert') }}">
-                    <i class="fa-regular fa-bell"></i>
-                    <span>alertas</span></a>
-            </li>
+       <!-- Nav Item - Tables -->
+       <li class="nav-item">
+           <a class="nav-link" href="{{ route('dispositivo') }}">
+               <i class="fas fa-fw fa-table"></i>
+               <span>dispositivos</span></a>
+       </li>
+       <li class="nav-item">
+           <a class="nav-link" href="{{route('alertas.index') }}">
+               <i class="fas fa-bell fa-fw"></i>
+               <span class="badge badge-danger badge-counter" style="margin-right: 11rem !important;">3+</span>
+               <span style="margin-left: 12px">alertas</span></a>
+       </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('recomendacoes') }}">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Recomendações</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fa-solid fa-clock-rotate-left"></i>
-                    <span>historicos</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>relatorio</span></a>
-            </li>
+       <li class="nav-item">
+           <a class="nav-link" href="{{ route('monitoramento') }}">
+               <i class="fas fa-fw fa-table"></i>
+               <span>monitorização</span></a>
+       </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+       <li class="nav-item">
+           <a class="nav-link" href="#">
+               <i class="fas fa-fw fa-table"></i>
+               <span class="badge badge-danger badge-counter" style="margin-right: 11rem !important;">3+</span>
 
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
+               <span>recomendações</span></a>
+       </li>
+       <li class="nav-item">
+           <a class="nav-link" href="{{ route('historico') }}">
+               <i class="fa-solid fa-clock-rotate-left"></i>
+               <span>historicos</span></a>
+       </li>
+       <li class="nav-item">
+           <a class="nav-link" href="{{ route('relatorio') }}">
+               <i class="fas fa-fw fa-table"></i>
+               <span>relatorio</span></a>
+       </li>
+       <li class="nav-item">
+           <a class="nav-link" href="http://localhost:8080/">
+               <i class="fas fa-fw fa-table"></i>
+               <span>outra</span></a>
+       </li>
 
-           
+       <!-- Divider -->
+       <hr class="sidebar-divider d-none d-md-block">
 
-        </ul>
+       <!-- Sidebar Toggler (Sidebar) -->
+       <div class="text-center d-none d-md-inline">
+           <button class="rounded-circle border-0" id="sidebarToggle"></button>
+       </div>
+
+
+
+   </ul>

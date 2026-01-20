@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var list<string>
      */
    protected $fillable = [
-    'name', 'email', 'password', 'telefone',
+    'name', 'email', 'password', 'telefone','is_admin'
 ];
     /**
      * The attributes that should be hidden for serialization.
@@ -40,6 +40,8 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'is_admin' => 'boolean',
+
         ];
     }
 
@@ -64,5 +66,10 @@ public function alertas()
 public function recomendacoes()
 {
     return $this->hasMany(Recomendacao::class);
+}
+
+public function isAdmin(): bool
+{
+    return $this->is_admin === 1;
 }
 }
