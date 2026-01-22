@@ -58,7 +58,7 @@
 
         <div class="d-flex justify-content-center gap-3 flex-wrap mt-5">
           <a href="{{route('login')}}" class="btn btn-accent btn-lg px-5">Começar agora →</a>
-          <a href="#" class="btn btn-outline-light btn-lg px-5">
+          <a href="#beneficios" class="btn btn-outline-light btn-lg px-5">
             <i class="fa-solid fa-play me-2"></i> Saiba mais
           </a>
         </div>

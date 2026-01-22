@@ -49,39 +49,6 @@
               </p>
             </div>
           </div>
-
-          <div class="col-lg-4" data-aos="zoom-in">
-            <div class="card-feature p-4 h-100">
-              <i class="fa-solid fa-leaf feature-icon"></i>
-              <h4>Redução de Desperdícios</h4>
-              <p class="text-secondary mt-3">
-                Identifique e elimine gastos desnecessários de energia,<br />
-                contribuindo para um planeta mais sustentável.
-              </p>
-            </div>
-          </div>
-
-          <div class="col-lg-4" data-aos="zoom-in">
-            <div class="card-feature p-4 h-100">
-              <i class="fa-solid fa-leaf feature-icon"></i>
-              <h4>Redução de Desperdícios</h4>
-              <p class="text-secondary mt-3">
-                Identifique e elimine gastos desnecessários de energia,<br />
-                contribuindo para um planeta mais sustentável.
-              </p>
-            </div>
-          </div>
-
-          <div class="col-lg-4" data-aos="zoom-in">
-            <div class="card-feature p-4 h-100">
-              <i class="fa-solid fa-leaf feature-icon"></i>
-              <h4>Redução de Desperdícios</h4>
-              <p class="text-secondary mt-3">
-                Identifique e elimine gastos desnecessários de energia,<br />
-                contribuindo para um planeta mais sustentável.
-              </p>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -282,10 +249,10 @@
               <div class="solid-cicle">
                 <i class="fa-solid fa-network-wired tech-icon"></i>
               </div>
-              <h4>IoT Integrado</h4>
+              <h4>Laravel</h4>
               <p class="text-secondary mt-3">
-                Conecta todos os dispositivos da sua casa num único ecossistema
-                inteligente e automatizado.
+                Framework PHP moderno e robusto para desenvolvimento web.
+
               </p>
             </div>
           </div>
@@ -310,7 +277,7 @@
               <div class="solid-cicle">
                  <i class="fa-solid fa-shield-halved tech-icon"></i>
               </div>
-              <h4>Segurança Avançada</h4>
+              <h4>Bootstrap</h4>
               <p class="text-secondary mt-3">
               Encriptação de ponta a ponta e proteção de dados conforme os
                 mais altos
@@ -325,6 +292,9 @@
       </div>
     </section>
 
+    <div class="box-link" style="">
+
+    </div>
     @include('_layouts.footer')
 
   

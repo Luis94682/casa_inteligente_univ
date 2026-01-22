@@ -30,7 +30,7 @@
             <p class="subtitle">Criar uma nova conta</p>
 
             <!-- Formulário com Laravel -->
-            <form method="POST" action="{{ route('register') }}">
+            <form method="POST" action="{{ route('register') }}" novalidate>
                 @csrf
 
                 <div class="row g-3">
