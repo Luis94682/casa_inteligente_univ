@@ -91,5 +91,21 @@ public function toggle(Request $request, Dispositivo $dispositivo)
         'message' => $novoEstado ? 'Dispositivo ligado!' : 'Dispositivo desligado!'
     ]);
 }   
+
+
+public function monitoramento(){
+     $dispositivos = Dispositivo::where('user_id', Auth::id())
+        ->orderBy('nome')
+        ->get();
+
+    // Contagens
+    $totalDispositivos = $dispositivos->count();
+    $ligados = $dispositivos->where('ativo', 1)->count();
+    $desligados = $dispositivos->where('ativo', 0)->count();
+
+    return view('viewDash.monitorizacao', compact('dispositivos', 'totalDispositivos', 'ligados', 'desligados'));
+  
+}
+
   
 }

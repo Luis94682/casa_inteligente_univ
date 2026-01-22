@@ -81,20 +81,22 @@
                <span class="badge badge-danger badge-counter" style="margin-right: 11rem !important;">3+</span>
                <span style="margin-left: 12px">alertas</span></a>
        </li>
-
-       <li class="nav-item">
+        <li class="nav-item">
            <a class="nav-link" href="{{ route('monitoramento') }}">
                <i class="fas fa-fw fa-table"></i>
                <span>monitorização</span></a>
        </li>
-
-       <li class="nav-item">
+         <li class="nav-item">
            <a class="nav-link" href="#">
                <i class="fas fa-fw fa-table"></i>
                <span class="badge badge-danger badge-counter" style="margin-right: 11rem !important;">3+</span>
 
                <span>recomendações</span></a>
        </li>
+
+      
+
+     
        <li class="nav-item">
            <a class="nav-link" href="{{ route('historico') }}">
                <i class="fa-solid fa-clock-rotate-left"></i>

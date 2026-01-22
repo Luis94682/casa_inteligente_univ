@@ -50,9 +50,7 @@ Route::get('/alertas/count', [AlertaController::class, 'countNaoLidos'])->name('
 })->middleware('auth')->name('alert'); */
 
 Route::get('/dispositivo',[DeviceController::class, 'index'])->middleware('auth')->name('dispositivo');
-Route::get('/monitoramento', function () {
-    return view('viewDash.monitorizacao');
-})->middleware('auth')->name('monitoramento');
+Route::get('/monitoramento', [DeviceController::class, 'monitoramento'])->middleware('auth')->name('monitoramento');
 
 
 Route::get('/relatorio', function () {

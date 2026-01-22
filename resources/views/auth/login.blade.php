@@ -19,11 +19,11 @@
 <div class="login-wrapper d-flex justify-content-center align-items-center">
     <div class="login-card text-center">
         <!-- Ícone -->
-        <div class="logo mb-3">
-            <a href="{{route('index')}}"><i class="bi bi-lightning-charge-fill" style="color:#fff"></i></a>
+        <div class="logo mb-3" style="width:20px;height:20px">
+            <a href="{{route('index')}}"><i class="bi bi-lightning-charge-fill" style="color:#18d1df;"></i></a>
             
         </div>
-        <h4 class="title">Smart Home</h4>
+        <h4 class="title" style="color:#fff">Smart Home</h4>
         <p class="subtitle">Entre na sua conta</p>
        <form action="{{ route('login.authenticate') }}" method="POST">
     @csrf

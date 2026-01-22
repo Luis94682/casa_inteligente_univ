@@ -21,59 +21,38 @@
                 <div class="container-fluid py-5 px-4 px-lg-5">
 
                     <!-- Cards superiores -->
-                    <div class="row g-4 mb-5">
+                     <div class="row g-4 mb-5">
 
-                        <!-- Consumo Atual -->
-                        <div class="col-xl-3 col-lg-6 col-md-6">
-                            <div class="card-stat p-4">
+                        <!-- Dispositivos Ligados -->
+                        <div class="col-xl-4 col-lg-6 col-md-6">
+                            <div class="card-stat p-4 text-center bg-gradient-dark rounded-4 shadow">
                                 <div class="d-flex justify-content-center align-items-center mb-3">
-                                    <i class="bi bi-lightning-charge-fill fs-3 text-green me-3"></i>
+                                    <i class="bi bi-power fs-3 text-success me-3"></i>
                                 </div>
-                                <p class="small text-muted mb-0">Consumo Atual</p>
-                                <h3 class="fw-bold mb-1" style="color: #fff !important">0,53 <small class="text-muted"
-                                        style="color: #fff !important">kW</small></h3>
-                                <p class="small text-muted mb-0">Em tempo real</p>
+                                <p class="small text-muted mb-1 text-center">Dispositivos Ligados</p>
+                                <h3 class="fw-bold mb-0 text-success ligados-count">{{ $ligados ?? 0 }}</h3>
                             </div>
                         </div>
 
-                        <!-- Consumo Diário -->
-                        <div class="col-xl-3 col-lg-6 col-md-6">
-                            <div class="card-stat p-4">
-                                <div class="d-flex justify-content-between  mb-2">
-                                    <p class="small mb-1">Consumo Diário</p>
-                                    <span class="badge bg-danger badge-small" style="color: #fff !important">↑ 12%</span>
+                        <!-- Dispositivos Desligados -->
+                        <div class="col-xl-4 col-lg-6 col-md-6">
+                            <div class="card-stat p-4 text-center bg-gradient-dark rounded-4 shadow">
+                                <div class="d-flex justify-content-center align-items-center mb-3">
+                                    <i class="bi bi-power fs-3 text-secondary me-3"></i>
                                 </div>
-
-                                <h3 class="fw-bold mb-1" style="color: #fff !important">10,42 <small class="text-muted"
-                                        style="color: #fff !important">kWh</small></h3>
-                                <p class="small mb-1">Hoje</p>
-
+                                <p class="small text-muted mb-1 text-center">Dispositivos Desligados</p>
+                                <h3 class="fw-bold mb-0 text-secondary desligados-count">{{ $desligados ?? 0 }}</h3>
                             </div>
                         </div>
 
-                        <!-- Consumo Mensal -->
-                        <div class="col-xl-3 col-lg-6 col-md-6">
-                            <div class="card-stat p-4">
-                                <div class="d-flex mb-3">
-                                    <i class="bi bi-calendar-event fs-3 text-info me-3"></i>
-                                    <p class="small text-muted mb-0">Consumo Atual</p>
+                        <!-- Total de Dispositivos -->
+                        <div class="col-xl-4 col-lg-6 col-md-6">
+                            <div class="card-stat p-4 text-center bg-gradient-dark rounded-4 shadow">
+                                <div class="d-flex justify-content-center align-items-center mb-3">
+                                    <i class="bi bi-plug fs-3 text-primary me-3"></i>
                                 </div>
-                                <h3 class="fw-bold mb-1" style="color: #fff !important">313 <small class="text-muted"
-                                        style="color: #fff !important">kWh</small></h3>
-                                <p class="small text-muted mb-0">Estimativa</p>
-                            </div>
-                        </div>
-
-                        <!-- Custo Estimado -->
-                        <div class="col-xl-3 col-lg-6 col-md-6">
-                            <div class="card-stat p-4">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <p class="small text-muted mb-0">Custo Estimado</p>
-                                    <span class="badge bg-success badge-small" style="color: #fff !important">↓ 8%</span>
-                                </div>
-                                <h3 class="fw-bold mb-1" style="color: #fff !important">7.816 <small class="text-muted" style="color: #fff !important">Kz</small></h3>
-                                <p class="small mb-1">Este mês</p>
-
+                                <p class="small text-muted mb-1 text-center">Total de Dispositivos</p>
+                                <h3 class="fw-bold mb-0 text-primary total-count">{{ $totalDispositivos ?? 0 }}</h3>
                             </div>
                         </div>
 
