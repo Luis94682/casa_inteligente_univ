@@ -14,7 +14,7 @@ class Dispositivo extends Model
         'ativo',
     ];
     protected $casts = [
-        'ativo' => 'boolean',
+        'ativo' => 'boolean','ultima_atividade_at' => 'datetime',
     ];
 
     public function user()
@@ -26,4 +26,14 @@ class Dispositivo extends Model
     {
         return $this->hasMany(Consumo::class);
     }
+
+    public function estaLigado(): bool
+{
+    return $this->ativo;
+}
+
+public function estaDesligado(): bool
+{
+    return ! $this->ativo;
+}
 }

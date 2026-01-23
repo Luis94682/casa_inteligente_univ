@@ -61,81 +61,90 @@
     </div>
     <!-- End of Page Wrapper -->
 
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
     <!-- JavaScript para carregar alertas dinamicamente -->
    <script>
 async function loadAlertas() {
     try {
-        console.log('Iniciando fetch para alertas...');
-        const url = '{{ route("alertas.index") }}';
-        console.log('URL:', url);
-
-        const response = await fetch(url, {
-            headers: { 'Accept': 'application/json' }
+        const response = await fetch('{{ route("alertas.index") }}?json=1', {
+            headers: {
+                'Accept': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+            }
         });
 
-        console.log('Status:', response.status);
-        console.log('OK:', response.ok);
+        if (!response.ok) throw new Error('Erro ao carregar');
 
-        if (!response.ok) {
-            const textError = await response.text();
-            console.log('Erro HTTP - Resposta:', textError);
-            throw new Error(`HTTP ${response.status}`);
-        }
+        let alertas = await response.json();
 
-        const text = await response.text();
-        console.log('Resposta crua:', text);
-
-        let alertas;
-        try {
-            alertas = JSON.parse(text);
-            console.log('JSON parseado:', alertas);
-        } catch (parseError) {
-            console.error('Erro parse JSON:', parseError);
-            throw new Error('Resposta inválida');
-        }
+        // Filtrar alertas que ainda não expiraram
+        const agora = new Date();
+        alertas = alertas.filter(alerta => {
+            if (!alerta.expires_at) return true; // sem expiração → mantém
+            const expiraEm = new Date(alerta.expires_at);
+            return expiraEm > agora; // só mantém se ainda não expirou
+        });
 
         const list = document.getElementById('alertas-list');
         const countEl = document.getElementById('alert-count');
 
-        list.innerHTML = '';
+        const naoLidos = alertas.filter(a => !a.lido).length;
+        countEl.textContent = naoLidos;
+        countEl.classList.toggle('d-none', naoLidos === 0);
 
-        if (!Array.isArray(alertas) || alertas.length === 0) {
+        if (alertas.length === 0) {
             list.innerHTML = `
-                <div class="alert alert-secondary text-center rounded-4">
-                    Nenhum informativo no momento
+                <div class="card bg-dark text-center p-5 rounded-4 shadow-sm border-0">
+                    <i class="bi bi-check-circle-fill text-success fs-1 mb-3"></i>
+                    <h5 class="text-white fw-bold mb-2">Está tudo controlado!</h5>
+                    <p class="text-muted small mb-0">
+                        Não há alertas ou notificações pendentes no momento.<br>
+                        Todos os dispositivos estão monitorizados e sob controlo.
+                    </p>
                 </div>
             `;
-            countEl.textContent = '0';
-            countEl.classList.add('d-none');
             return;
         }
 
-        countEl.textContent = alertas.length;
-        countEl.classList.remove('d-none');
-
-        alertas.forEach(alerta => {
-            const card = document.createElement('div');
-            card.className = `alert alert-${alerta.nivel || 'info'} d-flex align-items-center justify-content-between rounded-4 p-4 mb-3 shadow-sm border-0 ${alerta.lido ? 'opacity-50' : ''}`;
-            card.style.background = 'linear-gradient(90deg, #0f162b 0%, #1a1f3d 100%)';
-            card.style.border = '1px solid rgba(13,110,253,0.2)';
-
-            card.innerHTML = `
-                <div class="d-flex align-items-center flex-grow-1">
-                    <div class="bg-primary rounded-circle p-2 me-3" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;">
-                        <i class="bi bi-info-circle-fill text-white fs-5"></i>
-                    </div>
-                    <div>
-                        <p class="mb-1 fw-medium text-white">${alerta.mensagem}</p>
-                        <small class="text-muted">${new Date(alerta.data_alerta).toLocaleString('pt-AO', { dateStyle: 'short', timeStyle: 'short' })}</small>
+        list.innerHTML = alertas.map(alerta => {
+            const isDesligado = alerta.mensagem.toLowerCase().includes('foi desligado');
+            return `
+                <div class="card mb-3 border-0 rounded-4 shadow-sm ${alerta.lido ? 'opacity-75' : ''}" 
+                     style="background: linear-gradient(90deg, #0f162b 0%, #1a1f3d 100%); border-left: 4px solid ${alerta.nivel === 'danger' ? '#dc3545' : '#0d6efd'} !important;">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div class="d-flex align-items-center flex-grow-1">
+                                <div class="me-3">
+                                    <i class="bi ${alerta.nivel === 'danger' ? 'bi-exclamation-triangle-fill text-danger' : 'bi-info-circle-fill text-primary'} fs-4"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <p class="mb-1 text-white fw-medium">${alerta.mensagem}</p>
+                                    <small class="text-muted">
+                                        <i class="bi bi-clock"></i> ${new Date(alerta.data_alerta).toLocaleString('pt-PT')}
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-2">
+                                ${!alerta.lido ? `
+                                <button class="btn btn-sm btn-outline-success marcar-lido me-2" data-id="${alerta.id}">
+                                    <i class="bi bi-check-lg"></i> OK
+                                </button>` : ''}
+                                ${isDesligado ? `
+                                <button class="btn btn-sm btn-outline-danger remover-alerta" data-id="${alerta.id}">
+                                    <i class="fa-solid fa-trash"></i> Remover
+                                </button>` : ''}
+                            </div>
+                        </div>
                     </div>
                 </div>
-                ${!alerta.lido ? `<button type="button" class="btn-close btn-close-white ms-3 marcar-lido" data-id="${alerta.id}" aria-label="Fechar"></button>` : ''}
             `;
+        }).join('');
 
-            list.appendChild(card);
-        });
-
-        // Evento marcar lido
+        // Marcar como lido
         document.querySelectorAll('.marcar-lido').forEach(btn => {
             btn.addEventListener('click', async function() {
                 const id = this.dataset.id;
@@ -144,35 +153,61 @@ async function loadAlertas() {
                         method: 'POST',
                         headers: {
                             'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                            'Content-Type': 'application/json',
                             'Accept': 'application/json'
                         }
                     });
-                    const data = await res.json();
-                    if (data.success) {
-                        this.closest('.alert').classList.add('opacity-50');
+
+                    if (res.ok) {
+                        this.closest('.card').classList.add('opacity-75');
                         this.remove();
-                        let count = parseInt(countEl.textContent) - 1;
-                        countEl.textContent = count;
-                        if (count === 0) countEl.classList.add('d-none');
+                        const current = parseInt(countEl.textContent);
+                        countEl.textContent = current - 1;
                     }
                 } catch (err) {
-                    console.error('Erro marcar lido:', err);
+                    console.error('Erro:', err);
+                }
+            });
+        });
+
+        // Remover alerta permanentemente
+        document.querySelectorAll('.remover-alerta').forEach(btn => {
+            btn.addEventListener('click', async function() {
+                const id = this.dataset.id;
+                if (!confirm('Tem certeza que deseja remover este alerta permanentemente?')) return;
+
+                try {
+                    const res = await fetch(`/alertas/${id}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    if (res.ok) {
+                        this.closest('.card').remove();
+                        const current = parseInt(countEl.textContent);
+                        countEl.textContent = current - 1;
+                    }
+                } catch (err) {
+                    console.error('Erro ao remover:', err);
                 }
             });
         });
 
     } catch (error) {
-        console.error('Erro geral:', error);
         document.getElementById('alertas-list').innerHTML = `
-            <div class="alert alert-danger text-center rounded-4">
-                Erro ao carregar: ${error.message}
+            <div class="alert alert-danger rounded-4 text-center">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                Erro ao carregar informativos
             </div>
         `;
     }
 }
 
-loadAlertas();
-setInterval(loadAlertas, 15000);
+document.addEventListener('DOMContentLoaded', loadAlertas);
+setInterval(loadAlertas, 30000);
 </script>
 
 @endsection

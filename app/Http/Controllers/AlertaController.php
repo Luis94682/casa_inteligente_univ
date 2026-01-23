@@ -8,14 +8,20 @@ use Illuminate\Support\Facades\Auth;
 
 class AlertaController extends Controller
 {
-    public function index()
-    {
-        $alertas = Alerta::where('user_id', Auth::id())
-            ->orderBy('created_at', 'desc')
-            ->get();
+   public function index(Request $request)
+{
+    $alertas = Alerta::where('user_id', Auth::id())
+        ->orderBy('created_at', 'desc')
+        ->get();
 
-        return view('ViewDash.alert', compact('alertas'));
+    // Se a requisição é AJAX/JSON, retorna JSON
+    if ($request->expectsJson() || $request->ajax()) {
+        return response()->json($alertas);
     }
+
+    // Se não, retorna a view normal
+    return view('ViewDash.alert', compact('alertas'));
+}
 
     public function marcarLido(Alerta $alerta)
     {
@@ -36,4 +42,16 @@ class AlertaController extends Controller
 
         return response()->json(['count' => $count]);
     }
+
+
+    public function destroy(Alerta $alerta)
+{
+    if ($alerta->user_id !== Auth::id()) {
+        return response()->json(['success' => false], 403);
+    }
+
+    $alerta->delete();
+
+    return response()->json(['success' => true]);
+}
 }

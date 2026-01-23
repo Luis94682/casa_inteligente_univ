@@ -107,11 +107,11 @@
                <i class="fas fa-fw fa-table"></i>
                <span>relatorio</span></a>
        </li>
-       <li class="nav-item">
+      {{--  <li class="nav-item">
            <a class="nav-link" href="http://localhost:8080/">
                <i class="fas fa-fw fa-table"></i>
                <span>outra</span></a>
-       </li>
+       </li> --}}
 
        <!-- Divider -->
        <hr class="sidebar-divider d-none d-md-block">
