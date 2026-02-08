@@ -87,33 +87,30 @@
 <!-- Modal Recuperar Senha -->
 <div class="modal fade" id="modalRecuperarSenha" tabindex="-1" aria-labelledby="modalRecuperarSenhaLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content bg-dark text-white border-0 shadow-lg rounded-4">
-            <div class="modal-header border-0 pb-0 px-5 pt-4">
+        <div class="modal-content bg-dark text-white border-0 shadow-lg rounded-4" style="background-color:#1e293b !important;border: 2px solid rgb(32, 213, 226) !important">
+            {{-- <div class="modal-header border-0">
                 <h5 class="modal-title fw-bold" id="modalRecuperarSenhaLabel">Recuperar Senha</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
-            </div>
+            </div> --}}
             <div class="modal-body px-5 pb-5">
-
-                <p class="text-muted small mb-4">Digite seu email para receber o link de redefinição.</p>
-
                 <form id="formRecuperarSenha" method="POST" action="{{ route('password.email') }}">
                     @csrf
 
-                    <div class="mb-4">
+                    <div class="mb-2">
                         <label for="email" class="form-label text-white">Email</label>
                         <div class="input-group">
-                            <span class="input-group-text bg-secondary border-0"><i class="bi bi-envelope"></i></span>
+                            <span class="input-group-text bg-secondary border-0" style="background-color: #10192d !important"><i class="bi bi-envelope" style="background-color: #10192d !important"></i></span>
                             <input type="email" name="email" id="email" class="form-control bg-secondary text-white border-0" 
-                                   placeholder="seu@email.com" value="{{ old('email') }}" required autofocus>
+                                   placeholder="seu@email.com" value="{{ old('email') }}" required autofocus style="background-color: #10192d !important">
                             @error('email')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
                         </div>
                     </div>
 
-                    <div class="text-end">
-                        <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-primary px-4">Enviar Link</button>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-danger me-2" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-success px-4">Enviar Link</button>
                     </div>
                 </form>
 

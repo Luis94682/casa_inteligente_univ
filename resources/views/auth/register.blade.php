@@ -22,9 +22,9 @@
         <div class="login-card text-center" style="max-width: 600px !important;">
 
             <!-- Ícone / Logo -->
-            <div class="logo mb-3">
-                <a href="{{ route('index') }}"><i class="bi bi-lightning-charge-fill" style="color:#fff"></i></a>
-            </div>
+            <div class="logo mb-3" style="width:20px;height:20px">
+            <a href="{{ route('index') }}"><i class="bi bi-lightning-charge-fill" style="color:#18d1df;"></i></a>
+        </div>
 
             <h4 class="title">Smart Home</h4>
             <p class="subtitle">Criar uma nova conta</p>
@@ -89,7 +89,7 @@
                     </div>
 
                     <!-- nome completo-->
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <label class="form-label text-start d-block">Nome</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-lock"></i></span>

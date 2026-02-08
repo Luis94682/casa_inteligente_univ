@@ -8,19 +8,20 @@ use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\AlertaController;
 use App\Http\Controllers\MonitorizacaoController;
 
-// Páginas públicas
+
+
+
 Route::get('/', [MainController::class, 'index'])->name('index');
 
-// Autenticação
 Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/logindata', [AuthController::class, 'authenticate'])->name('login.authenticate');
+Route::post('/login', [AuthController::class, 'authenticate'])->name('login.authenticate');
 
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'store'])->name('register.store');
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
-// Dashboard protegido (exemplo básico)
+
 Route::get('/alertas', [AlertaController::class, 'index'])->name('alertas.index');
 
 Route::get('/dashboard', function () {
@@ -33,7 +34,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
 
-    // Alertas
+
 Route::post('/alertas/{alerta}/marcar-lido', [AlertaController::class, 'marcarLido'])->name('alertas.marcar-lido');
 Route::get('/alertas/count', [AlertaController::class, 'countNaoLidos'])->name('alertas.count');
     
@@ -43,12 +44,6 @@ Route::get('/alertas/count', [AlertaController::class, 'countNaoLidos'])->name('
 
 
 
-/* link view */
-
-
-/* Route::get('/alert', function () {
-    return view('viewDash.alert');
-})->middleware('auth')->name('alert'); */
 
 Route::get('/dispositivo',[DeviceController::class, 'index'])->middleware('auth')->name('dispositivo');
 Route::get('/monitoramento', [DeviceController::class, 'monitoramento'])->middleware('auth')->name('monitoramento');
@@ -102,6 +97,7 @@ Route::post('/forgot-password', [App\Http\Controllers\Auth\PasswordResetLinkCont
 Route::get('/reset-password/{token}', [App\Http\Controllers\Auth\NewPasswordController::class, 'create'])
     ->middleware('guest')
     ->name('password.reset');
+
 
 Route::post('/reset-password', [App\Http\Controllers\Auth\NewPasswordController::class, 'store'])
     ->middleware('guest')
